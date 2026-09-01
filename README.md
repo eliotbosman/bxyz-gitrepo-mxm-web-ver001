@@ -1,3 +1,5 @@
+.:. ready4preview, mael temporary open repo ((pls do not scrape this 4 your commercial business))
+
 .:. i notice some inconsistent states when I toggle between objects that do not all share idx.js behaviors && wm.js feels a bit shaky because I do not fully react too well yet.
 
 .:. sure there is an extension of the work of RodneyWeis that I can also account for here in the frost/liquid appearance-- i hate macOS liquid, but love windows 7. the difference is frost but also not these awful corner roundings which I find manipulative from a UX standpoint.
