@@ -1,0 +1,303 @@
+/* BXYZ:..:eliot@bosmanxyz.xyz:..:.www.bosmanxyz.xyz */
+
+@layer components {
+  .fonster-slot {
+    flex: 0 0 auto;
+    min-inline-size: 0;
+    overflow: visible;
+  }
+
+  .fonster {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    box-sizing: border-box;
+    width: 100%;
+    block-size: auto;
+    overflow: clip;
+    background: var(--fonster-yta-fallback);
+    border: var(--fonster-kant-bredd) var(--fonster-kant-stil) var(--fonster-kant-farg);
+    border-radius: var(--fonster-radie);
+    box-shadow: var(--fonster-skugga);
+    color: var(--mael-bg);
+    font-family: var(--font-fonster);
+    font-size: var(--typ-1);
+    font-weight: var(--font-vikt-fonster);
+    line-height: var(--fonster-radhogd);
+    opacity: var(--sikt, 1);
+    transition: background-color var(--dur-glas) var(--ease-storlek),
+      backdrop-filter var(--dur-glas) var(--ease-storlek),
+      -webkit-backdrop-filter var(--dur-glas) var(--ease-storlek),
+      opacity var(--dur-sikt) linear;
+  }
+
+  .piller {
+    display: inline-flex;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    padding-block: var(--fonster-pad-block);
+    padding-inline: var(--fonster-pad-inline);
+    background: var(--fonster-yta-fallback);
+    border: var(--fonster-kant-bredd) var(--fonster-kant-stil) var(--fonster-kant-farg);
+    border-radius: var(--fonster-radie);
+    box-shadow: var(--fonster-skugga);
+    color: var(--mael-bg);
+  }
+
+  .piller.horn-nv,
+  .horn-nv .piller {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fonster > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @supports (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    .fonster,
+    .piller {
+      background: var(--fonster-yta);
+      -webkit-backdrop-filter: blur(var(--fonster-sudd)) saturate(var(--fonster-matt))
+        brightness(var(--fonster-ljus));
+      backdrop-filter: blur(var(--fonster-sudd)) saturate(var(--fonster-matt))
+        brightness(var(--fonster-ljus));
+    }
+
+    .fonster[data-pekare="inne"] {
+      background: var(--fonster-yta-pekare);
+      -webkit-backdrop-filter: blur(var(--fonster-sudd-pekare)) saturate(var(--fonster-matt))
+        brightness(var(--fonster-ljus));
+      backdrop-filter: blur(var(--fonster-sudd-pekare)) saturate(var(--fonster-matt))
+        brightness(var(--fonster-ljus));
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    .fonster[data-storlek="liten"] {
+      animation: sikt-vy var(--dur-sikt) linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+
+  @keyframes sikt-vy {
+    0% {
+      opacity: var(--sikt-in);
+    }
+    14% {
+      opacity: var(--sikt-hel);
+    }
+    86% {
+      opacity: var(--sikt-hel);
+    }
+    100% {
+      opacity: var(--sikt-ut);
+    }
+  }
+
+  .fonster[data-sikt="ute"] {
+    --sikt: 0;
+  }
+
+  .fonster[data-sikt="in"],
+  .fonster[data-sikt="ut"] {
+    --sikt: 0.28;
+  }
+
+  .fonster[data-sikt="hel"] {
+    --sikt: 1;
+  }
+
+  .fonster[data-storlek="liten"]:not(:has(.fonster-bild)) {
+    min-block-size: calc(
+      var(--enheter, 10) * var(--rad-hojd) + (var(--enheter, 10) - 1) * var(--matt-1)
+    );
+  }
+
+  .fonster[data-storlek="stor"] {
+    grid-template-rows: auto 1fr auto;
+    block-size: calc(100dvh - 2 * var(--matt-2));
+    min-block-size: calc(100dvh - 2 * var(--matt-2));
+    animation: none;
+    opacity: 1;
+    --sikt: 1;
+    z-index: 1;
+    scroll-margin-block: var(--matt-2);
+  }
+
+  .fonster[data-lage="rut"] {
+    position: fixed;
+    inset-block-start: var(--rut-inset-block-start);
+    inset-block-end: var(--rut-inset-block-end);
+    inset-inline: var(--rut-inset-inline);
+    width: auto;
+    block-size: auto;
+    min-block-size: calc(
+      100dvh - var(--rut-inset-block-start) - var(--rut-inset-block-end)
+    );
+    grid-template-rows: auto 1fr auto;
+    z-index: var(--z-rut);
+    animation: none;
+    opacity: 1;
+    --sikt: 1;
+  }
+
+  .fonster[data-pekare="inne"] {
+    background: var(--fonster-yta-pekare);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .fonster {
+      background: var(--fonster-yta-fallback);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .piller {
+      background: var(--fonster-yta-fallback);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .fonster[data-pekare="inne"] {
+      --fonster-yta: var(--fonster-yta-fallback);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fonster,
+    .fonster[data-storlek="liten"] {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  .fonster[data-fokus="aktiv"] {
+    z-index: 1;
+  }
+
+  .fonster[data-rorelse],
+  .piller[data-rorelse] {
+    z-index: 2;
+    overflow: visible;
+    animation: none;
+    transition: none;
+  }
+
+  .fonster[data-rorelse="vaxer"],
+  .fonster[data-rorelse="krymper"] {
+    z-index: 3;
+  }
+
+  .fonster-slot:has([data-tillstand="stangd"]) {
+    display: none;
+  }
+
+  .fonster-huvud,
+  .fonster-fot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--matt-1);
+    padding-block: var(--fonster-pad-block);
+    padding-inline: var(--fonster-pad-inline);
+  }
+
+  .fonster-fot {
+    justify-content: flex-end;
+    gap: var(--fonster-styr-gap);
+    padding-block: var(--fonster-fot-pad-block);
+  }
+
+  .fonster-rubrik {
+    margin: 0;
+    font-size: var(--typ-1);
+    font-weight: var(--font-vikt-fonster);
+    line-height: var(--fonster-radhogd);
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fonster-kropp {
+    min-block-size: 0;
+    padding-inline: var(--fonster-pad-inline);
+    overflow: auto;
+    overflow-wrap: break-word;
+  }
+
+  .fonster-bild {
+    margin: 0 0 1em;
+  }
+
+  .fonster-bild img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .fonster-text {
+    min-inline-size: 0;
+  }
+
+  .fonster[data-lage="rut"] .fonster-kropp:has(.fonster-bild) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--matt-1);
+    align-items: start;
+  }
+
+  .fonster[data-lage="rut"] .fonster-bild {
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  @media (max-width: 47.99rem) {
+    .fonster[data-lage="rut"] .fonster-kropp:has(.fonster-bild) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .fonster-kropp p {
+    margin: 0 0 1em;
+  }
+
+  .fonster-kropp p:last-child {
+    margin-block-end: 0;
+  }
+
+  .fonster-kropp ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .fonster-kropp li + li {
+    margin-block-start: 1em;
+  }
+
+  .fonster-kropp a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .fonster-huvud button,
+  .fonster-fot button {
+    display: inline-grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-inline-size: var(--fonster-radhogd);
+    min-block-size: var(--fonster-radhogd);
+    padding: 0;
+    line-height: 1;
+    border: var(--fonster-styr-kant-bredd) solid currentColor;
+    border-radius: var(--fonster-styr-radie);
+  }
+}

@@ -1,0 +1,72 @@
+<!-- BXYZ:..:eliot@bosmanxyz.xyz:..:.www.bosmanxyz.xyz -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maël Xuan Metzger</title>
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cossette+Titre:wght@400;700&family=Cossette+Texte:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/windows.css">
+  </head>
+  <body>
+    <a class="hoppa-till" href="#mosaik">Skip to windows</a>
+
+    <div class="prov-yta" aria-hidden="true"></div>
+
+    <h1 class="horn horn-nv">
+      <a class="piller" href="#" data-atgard="skrivbord/hem">
+        <span>Maël</span>
+        <span>Xuan</span>
+        <span>Metzger</span>
+      </a>
+    </h1>
+    <a class="horn horn-nh piller" href="#about" data-atgard="skrivbord/oppna" data-fonster="about">Info</a>
+    <div class="horn horn-sv">
+      <nav class="startlista" id="startlista" aria-label="Start" aria-hidden="true">
+        <a class="piller" href="#about" data-atgard="skrivbord/oppna" data-fonster="about">About</a>
+        <a class="piller" href="#work" data-atgard="skrivbord/oppna" data-fonster="work">Work</a>
+        <a class="piller" href="#personal" data-atgard="skrivbord/oppna" data-fonster="personal">Personal</a>
+        <a class="piller" href="#contact" data-atgard="skrivbord/oppna" data-fonster="contact">Contact</a>
+      </nav>
+      <button type="button" class="piller" id="start-knapp" data-atgard="start/vaxla" aria-expanded="false" aria-controls="startlista">Start</button>
+    </div>
+    <time class="horn horn-sh piller" id="klocka" datetime="">00:00:00</time>
+
+    <nav class="filter" id="filter" aria-label="Filter">
+      <a class="piller" href="#art" data-atgard="filter/satt" data-filter="art">Art</a>
+      <a class="piller" href="#music" data-atgard="filter/satt" data-filter="music">Music</a>
+      <a class="piller" href="#design" data-atgard="filter/satt" data-filter="design">Design</a>
+      <a class="piller" href="#" data-atgard="filter/satt" data-filter="alla" data-vald="ja" aria-current="true">Reset</a>
+    </nav>
+
+    <main id="mosaik" class="mosaik" data-vikt="jamn" data-filter="alla">
+      <div class="spar" id="spar-v" data-spar="v"></div>
+      <div class="spar" id="spar-m" data-spar="m"></div>
+      <div class="spar" id="spar-h" data-spar="h"></div>
+      <div class="mosaik-vakt" id="mosaik-vakt" aria-hidden="true"></div>
+    </main>
+
+    <template id="mall-fonster">
+      <div class="fonster-slot">
+        <article class="fonster" data-fonster="" data-storlek="liten">
+          <header class="fonster-huvud">
+            <h2 class="fonster-rubrik"></h2>
+            <button type="button" data-atgard="fonster/stang" aria-label="Close">X</button>
+          </header>
+          <div class="fonster-kropp"></div>
+          <footer class="fonster-fot">
+            <button type="button" data-atgard="fonster/minska" aria-label="Restore">-</button>
+            <button type="button" data-atgard="fonster/oka" aria-label="Expand">+</button>
+          </footer>
+        </article>
+      </div>
+    </template>
+
+    <script type="module" src="js/idx.js"></script>
+  </body>
+</html>

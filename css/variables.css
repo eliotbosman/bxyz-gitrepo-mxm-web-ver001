@@ -1,0 +1,104 @@
+/* BXYZ:..:eliot@bosmanxyz.xyz:..:.www.bosmanxyz.xyz */
+
+@layer reset, tokens, base, layout, components, utilities, overrides;
+
+@layer tokens {
+  :root {
+    --mael-bg: #222222;
+    --mael-txt: #1b1b1b;
+
+    --typ-1: 15.12px;
+    --typ-2: calc(var(--typ-1) * 2);
+    --typ-3: calc(var(--typ-1) * 3);
+    --typ-horn: var(--typ-2);
+    --typ-filter: var(--typ-2);
+    --rad-horn: 1.05em;
+
+    --matt-1: var(--typ-1);
+    --matt-2: calc(var(--typ-1) * 2);
+    --piller-rad: calc(var(--typ-horn) * 1.05);
+    --horn-nv-rader: 3;
+    --rut-luft: var(--matt-1);
+    --rut-inset-block-start: calc(
+      var(--matt-2) + var(--horn-nv-rader) * var(--piller-rad) + 2 * var(--fonster-pad-block) +
+        var(--rut-luft)
+    );
+    --rut-inset-block-end: calc(
+      var(--matt-2) + var(--piller-rad) + 2 * var(--fonster-pad-block) + var(--rut-luft)
+    );
+    --rut-inset-inline: var(--matt-2);
+
+    --font-horn: "Cossette Titre", sans-serif;
+    --font-fonster: "Cossette Texte", "Cossette Titre", sans-serif;
+    --font-vikt-horn: 400;
+    --font-vikt-fonster: 400;
+    --radhogd: normal;
+
+    --rut-kol: 4;
+    --rut-rad-vy: 19;
+    --rad-hojd: calc(
+      (100dvh - 2 * var(--matt-2) - 18 * var(--matt-1)) / var(--rut-rad-vy)
+    );
+    --kol-bredd: calc(
+      (100vw - 2 * var(--matt-2) - 3 * var(--matt-1)) / var(--rut-kol)
+    );
+
+    --mosaik-spar: 1fr 2fr 1fr;
+    --mosaik-spar-v: 3fr 0.5fr 0.5fr;
+    --mosaik-spar-m: 0.5fr 3fr 0.5fr;
+    --mosaik-spar-h: 0.5fr 0.5fr 3fr;
+
+    --fonster-radie: 7px;
+    --fonster-yta: rgb(255 255 255 / 0.18);
+    --fonster-yta-pekare: rgb(255 255 255 / 0.42);
+    --fonster-yta-fallback: color-mix(in srgb, var(--mael-txt) 72%, white);
+    --fonster-pad-block: 12px;
+    --fonster-pad-inline: 11px;
+    --fonster-fot-pad-block: 5px;
+    --fonster-styr-gap: 4px;
+    --fonster-styr-kant-bredd: 1px;
+    --fonster-styr-radie: var(--fonster-radie);
+    --fonster-radhogd: 18px;
+    --fonster-sudd: 16px;
+    --fonster-sudd-pekare: 36px;
+    --fonster-matt: 1.4;
+    --fonster-ljus: 1.15;
+    --fonster-kant-bredd: 1px;
+    --fonster-kant-stil: solid;
+    --fonster-kant-farg: rgb(255 255 255 / 0.28);
+    --fonster-kant-topp: rgb(255 255 255 / 0.45);
+    --fonster-kant-botten: rgb(255 255 255 / 0.12);
+    --fonster-skugga: inset 1px 1px 0 var(--fonster-kant-topp),
+      inset -1px -1px 0 var(--fonster-kant-botten);
+
+    --prov-bild: url("../assets/test/mael-bg-windows.jpg");
+    --prov-sudd: 120px;
+    --prov-skala: 1.3;
+
+    --sikt-in: 0;
+    --sikt-hel: 1;
+    --sikt-ut: 0;
+
+    --z-prov: 0;
+    --z-mosaik: 1;
+    --z-rut: 10;
+    --z-horn: 20;
+    --z-startlista: 21;
+    --z-hoppa: 30;
+
+    --dur-storlek: 320ms;
+    --dur-sikt: 480ms;
+    --dur-glas: 240ms;
+    --ease-storlek: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --brytpunkt-mobil: 47.99rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --dur-storlek: 0ms;
+      --dur-sikt: 0ms;
+      --dur-glas: 0ms;
+    }
+  }
+}

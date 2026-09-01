@@ -1,0 +1,317 @@
+/* BXYZ:..:eliot@bosmanxyz.xyz:..:.www.bosmanxyz.xyz */
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-block-size: 100%;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer base {
+  html {
+    font-family: var(--font-fonster);
+    font-size: var(--typ-1);
+    color: var(--mael-bg);
+    background: var(--mael-txt);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    min-block-size: 100dvh;
+    background: var(--mael-txt);
+    color: var(--mael-bg);
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 1px dotted var(--mael-bg);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--mael-bg);
+    color: var(--mael-txt);
+  }
+
+  .hoppa-till {
+    position: absolute;
+    inset-block-start: var(--matt-1);
+    inset-inline-start: var(--matt-1);
+    z-index: var(--z-hoppa);
+    transform: translateY(-200%);
+  }
+
+  .hoppa-till:focus {
+    transform: none;
+  }
+}
+
+@layer layout {
+  .horn {
+    position: fixed;
+    z-index: var(--z-horn);
+    width: max-content;
+    max-width: calc(100vw - 2 * var(--matt-2));
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-horn);
+    font-size: var(--typ-horn);
+    font-weight: var(--font-vikt-horn);
+    line-height: var(--rad-horn);
+    color: var(--mael-bg);
+  }
+
+  .horn-nv {
+    inset-block-start: var(--matt-2);
+    inset-inline-start: var(--matt-2);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .horn-nh {
+    inset-block-start: var(--matt-2);
+    inset-inline-end: var(--matt-2);
+  }
+
+  .horn-sv {
+    inset-block-end: var(--matt-2);
+    inset-inline-start: var(--matt-2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--matt-1);
+  }
+
+  .horn-sh {
+    inset-block-end: var(--matt-2);
+    inset-inline-end: var(--matt-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .prov-yta {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-prov);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .prov-yta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--prov-bild);
+    background-size: cover;
+    background-position: center;
+    transform: scale(var(--prov-skala));
+    filter: blur(var(--prov-sudd));
+
+  }
+
+  .mosaik {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--mosaik-spar);
+    gap: var(--matt-1);
+    padding: var(--matt-2);
+    min-block-size: 100dvh;
+    z-index: var(--z-mosaik);
+    align-items: start;
+  }
+
+  .mosaik[data-vikt="jamn"] {
+    --mosaik-spar: 1fr 2fr 1fr;
+  }
+
+  .mosaik[data-vikt="v"] {
+    --mosaik-spar: var(--mosaik-spar-v);
+  }
+
+  .mosaik[data-vikt="m"] {
+    --mosaik-spar: var(--mosaik-spar-m);
+  }
+
+  .mosaik[data-vikt="h"] {
+    --mosaik-spar: var(--mosaik-spar-h);
+  }
+
+  .spar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--matt-1);
+    min-inline-size: 0;
+  }
+
+  .spar[data-spar="v"] {
+    grid-column: 1;
+  }
+
+  .spar[data-spar="m"] {
+    grid-column: 2;
+  }
+
+  .spar[data-spar="h"] {
+    grid-column: 3;
+  }
+
+  .mosaik-vakt {
+    grid-column: 1 / -1;
+    block-size: var(--rad-hojd);
+    pointer-events: none;
+  }
+
+  .filter {
+    position: fixed;
+    z-index: var(--z-horn);
+    inset-block-end: var(--matt-2);
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    gap: var(--matt-1);
+    font-family: var(--font-horn);
+    font-size: var(--typ-filter);
+    font-weight: var(--font-vikt-horn);
+    line-height: 1;
+    color: var(--mael-bg);
+    pointer-events: none;
+  }
+
+  .filter a {
+    pointer-events: auto;
+  }
+
+  .filter a[data-vald="ja"] {
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  .mosaik[data-filter="art"] .fonster-slot:not(:has([data-kategori~="art"])),
+  .mosaik[data-filter="music"] .fonster-slot:not(:has([data-kategori~="music"])),
+  .mosaik[data-filter="design"] .fonster-slot:not(:has([data-kategori~="design"])) {
+    display: none;
+  }
+
+  .mosaik[data-lage="rut"] .fonster-slot:not(:has([data-lage="rut"])) {
+    visibility: hidden;
+  }
+
+  .mosaik[data-lage="rut"] .fonster-slot:has([data-lage="rut"]) {
+    display: block;
+  }
+
+  .startlista {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--matt-1);
+    width: max-content;
+  }
+
+  .startlista[data-tillstand="oppen"] {
+    display: flex;
+  }
+}
+
+@layer components {
+  .startlista a {
+    display: inline-flex;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@layer overrides {
+  @media (max-width: 47.99rem) {
+    :root {
+      --rut-kol: 1;
+      --kol-bredd: calc(100vw - 2 * var(--matt-2));
+    }
+
+    .horn-nv,
+    .horn-nh {
+      position: sticky;
+      top: var(--matt-2);
+      width: auto;
+      max-width: 100%;
+    }
+
+    .horn-nh {
+      text-align: start;
+      inset-inline-end: auto;
+    }
+
+    .horn-sv,
+    .horn-sh {
+      position: sticky;
+      bottom: var(--matt-2);
+      min-height: 0;
+    }
+
+    .filter {
+      position: sticky;
+      bottom: var(--matt-2);
+    }
+
+    .mosaik {
+      display: flex;
+      flex-direction: column;
+      gap: var(--matt-1);
+    }
+
+    .spar[data-spar="v"],
+    .spar[data-spar="m"],
+    .spar[data-spar="h"] {
+      grid-column: auto;
+    }
+
+    .mosaik[data-vikt="v"],
+    .mosaik[data-vikt="m"],
+    .mosaik[data-vikt="h"] {
+      --mosaik-spar: 1fr;
+    }
+  }
+}

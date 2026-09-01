@@ -1,0 +1,6 @@
+.DS_Store
+.cursor/
+*.log
+.vscode/
+.tmp*
+.tmp-dump.*
